@@ -10,14 +10,6 @@ Required Dependencies: None
 #>
 
 
-########################################################
-#
-# PSReflect code for Windows API access
-# Author: @mattifestation
-#   https://raw.githubusercontent.com/mattifestation/PSReflect/master/PSReflect.psm1
-#
-########################################################
-
 function New-InMemoryModule {
 <#
 .SYNOPSIS
