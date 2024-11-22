@@ -1,12 +1,14 @@
 #!/usr/bin/zsh
 
+source ~/.zshrc
+
 # install go tools
-go install -v github.com/projectdiscovery/pdtm/cmd/pdtm@latest
-go install github.com/BishopFox/jsluice/cmd/jsluice@latest
-go install github.com/d3mondev/puredns/v2@latest
-go install github.com/ffuf/ffuf/v2@latest
-go install -v github.com/owasp-amass/amass/v4/...@master
-go install github.com/tomnomnom/gf@latest
+/usr/local/go install -v github.com/projectdiscovery/pdtm/cmd/pdtm@latest
+/usr/local/go install github.com/BishopFox/jsluice/cmd/jsluice@latest
+/usr/local/go install github.com/d3mondev/puredns/v2@latest
+/usr/local/go install github.com/ffuf/ffuf/v2@latest
+/usr/local/go install -v github.com/owasp-amass/amass/v4/...@master
+/usr/local/go install github.com/tomnomnom/gf@latest
 
 echo 'source $GOPATH/src/github.com/tomnomnom/gf/gf-completion.bash' >> ~/.bashrc
 echo 'source $GOPATH/src/github.com/tomnomnom/gf/gf-completion.bash' >> ~/.zshrc
@@ -20,7 +22,7 @@ cd ~/bin; git clone https://github.com/gitleaks/gitleaks.git
 cd gitleaks
 make build; cd ~/bin
 
-git clone https://github.com/coffinxp/loxs.gi/bin
+git clone https://github.com/coffinxp/loxs.git
 git clone https://github.com/coffinxp/LostXtools.git
 git clone https://github.com/coffinxp/customBsqli.git
 
