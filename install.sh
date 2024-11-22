@@ -3,12 +3,12 @@
 source ~/.zshrc
 
 # install go tools
-/usr/local/go install -v github.com/projectdiscovery/pdtm/cmd/pdtm@latest
-/usr/local/go install github.com/BishopFox/jsluice/cmd/jsluice@latest
-/usr/local/go install github.com/d3mondev/puredns/v2@latest
-/usr/local/go install github.com/ffuf/ffuf/v2@latest
-/usr/local/go install -v github.com/owasp-amass/amass/v4/...@master
-/usr/local/go install github.com/tomnomnom/gf@latest
+go install -v github.com/projectdiscovery/pdtm/cmd/pdtm@latest
+go install github.com/BishopFox/jsluice/cmd/jsluice@latest
+go install github.com/d3mondev/puredns/v2@latest
+go install github.com/ffuf/ffuf/v2@latest
+go install -v github.com/owasp-amass/amass/v4/...@master
+go install github.com/tomnomnom/gf@latest
 
 echo 'source $GOPATH/src/github.com/tomnomnom/gf/gf-completion.bash' >> ~/.bashrc
 echo 'source $GOPATH/src/github.com/tomnomnom/gf/gf-completion.bash' >> ~/.zshrc
@@ -16,7 +16,7 @@ echo 'source $GOPATH/src/github.com/tomnomnom/gf/gf-completion.bash' >> ~/.zshrc
 # source installs 
 git clone https://github.com/blechschmidt/massdns.git
 cd massdns; make
-sudo make install; cd ~/
+sudo make install
 
 cd ~/bin; git clone https://github.com/gitleaks/gitleaks.git
 cd gitleaks
