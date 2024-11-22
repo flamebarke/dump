@@ -10,10 +10,8 @@ go install github.com/ffuf/ffuf/v2@latest
 go install -v github.com/owasp-amass/amass/v4/...@master
 go install github.com/tomnomnom/gf@latest
 
-echo 'source $GOPATH/src/github.com/tomnomnom/gf/gf-completion.bash' >> ~/.bashrc
-echo 'source $GOPATH/src/github.com/tomnomnom/gf/gf-completion.bash' >> ~/.zshrc
-
 # source installs 
+cd ~/bin
 git clone https://github.com/blechschmidt/massdns.git
 cd massdns; make
 sudo make install
@@ -34,22 +32,21 @@ cp ~/bin/gFpattren/* ~/.gf/
 pip install -U --user shodan
 
 # wordlists
-mkdir -p ~/bin/wordlists
-cd ~/bin/wordlists
+cd ~/lists
 git clone https://github.com/danielmiessler/SecLists.git
 git clone https://github.com/trickest/wordlists.git
 git clone https://github.com/n0kovo/n0kovo_subdomains.git
 git clone https://github.com/Karanxa/Bug-Bounty-Wordlists.git
 git clone https://github.com/trickest/resolvers.git
-git clone https://github.com/coffinxp/payloads.git
-git clone https://github.com/coffinxp/nuclei-templates.git
 git clone https://github.com/coffinxp/oneListForall.git
+git clone https://github.com/coffinxp/payloads.git
 
-mkdir -p ~/bin/payloads
-cd ~/bin/payloads
+mkdir -p ~/payloads
+cd ~/payloads
 git clone https://github.com/coffinxp/pdFExploits.git
 git clone https://github.com/coffinxp/img-payloads.git
 git clone https://github.com/coffinxp/corsExploit.git
+git clone https://github.com/coffinxp/nuclei-templates.git
 
 # download sni-range scripts
 mkdir -p ~/bin/sni-ranges; cd ~/bin/sni-ranges
