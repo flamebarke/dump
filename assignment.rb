@@ -3,7 +3,7 @@ require 'socket'
 require 'timeout'
 require 'ipaddr'
 
-def scan_port(ip, port, timeout = 2)
+def scan_port(ip, port, timeout = 1)
   begin
     Timeout::timeout(timeout) do
       socket = TCPSocket.new(ip, port)
@@ -25,17 +25,30 @@ def generate_ips_from_cidr(cidr)
   end
 end
 
-def port_scanner(targets, port_range, timeout = 2)
+def port_scanner(targets, port_range, timeout = 1)
   results = {}
+  total_ips = targets.size
+  total_ports = port_range.size
+  total_scans = total_ips * total_ports
+  scans_completed = 0
+  start_time = Time.now
+  
+  puts "Starting scan of #{total_ips} hosts and #{total_ports} ports (#{total_scans} total scans)"
   
   targets.each do |target|
-    puts "Starting port scan on #{target}..."
     open_ports = []
     
     port_range.each do |port|
-      print "Scanning #{target}:#{port}...\r"
+      scans_completed += 1
+      percent_complete = (scans_completed.to_f / total_scans * 100).round(1)
+      elapsed = Time.now - start_time
+      rate = scans_completed / elapsed
+      eta = (total_scans - scans_completed) / rate
+      
+      print "\rProgress: #{percent_complete}% | Scanning #{target}:#{port} | ETA: #{eta.round(1)}s        "
+      
       if scan_port(target, port, timeout)
-        puts "Host #{target}: Port #{port} is open!        "
+        puts "\nHost #{target}: Port #{port} is open!        "
         open_ports << port
       end
     end
@@ -43,7 +56,9 @@ def port_scanner(targets, port_range, timeout = 2)
     results[target] = open_ports unless open_ports.empty?
   end
   
-  puts "\nScan completed!"
+  total_time = Time.now - start_time
+  puts "\nScan completed in #{total_time.round(2)} seconds!"
+  
   if results.empty?
     puts "No open ports found on any host."
   else
@@ -70,4 +85,6 @@ port_range = (start_port..end_port)
 ip_list = generate_ips_from_cidr(target_cidr)
 puts "Scanning #{ip_list.count} hosts in range #{target_cidr}"
 
-port_scanner(ip_list, port_range)
+# Implement a basic throttling mechanism to be gentler on networks
+timeout = 1
+port_scanner(ip_list, port_range, timeout)
